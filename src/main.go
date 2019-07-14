@@ -80,8 +80,8 @@ func main() {
 	{
 		//api.GET("/", apiHome)
 		api.GET("/filePath", upload)
-		api.GET("/user/{id}", viewAsUser)
-		api.GET("/admin/{id}", viewAsAdmin)
+		api.GET("/user/:key/:id", viewAsUser)
+		api.GET("/admin/:id", viewAsAdmin)
 	}
 
 	router.Run(":3001" )
@@ -96,8 +96,15 @@ func viewAsUser(c *gin.Context){
 
 }
 
-func viewAsAdmin(c *gin.Context){
 
+func viewAsAdmin(c *gin.Context){
+	id := c.Params.ByName("id")
+	key := c.Params.ByName("key")
+	var logfile []Logfile
+
+	db.Where("" + key + " = ?", id).Find(&logfile)
+
+	c.JSON(200, logfile)
 }
 
 
@@ -113,5 +120,6 @@ func readJSON(path string){
 
 	byteValue, _ := ioutil.ReadAll(json)
 	json.Unmarshal(byteValue, &logfile)
+
 }
 
