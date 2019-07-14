@@ -101,4 +101,17 @@ func viewAsAdmin(c *gin.Context){
 }
 
 
+func readJSON(path string){
+	var logfile []Logfile
+
+	json, err := os.Open(path)
+	defer json.Close()
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	byteValue, _ := ioutil.ReadAll(json)
+	json.Unmarshal(byteValue, &logfile)
+}
 
