@@ -5,8 +5,8 @@ import (
 	//"strconv"
 
 	_ "database/sql"
-	"encoding/json"
-	"fmt"
+	_"encoding/json"
+	_"fmt"
 	"github.com/gin-gonic/contrib/static"
 	_ "github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
@@ -92,7 +92,7 @@ func upload(c *gin.Context){
 
 	filePath := c.Params.ByName("filePath")
 	var logfile []Logfile
-	logfile = readJSON(filePath)
+	logfile = parseJSON(filePath)
 
 	for i := 0; i< len(logfile) ; i++ {
 		db.Create(logfile[i])
@@ -127,7 +127,7 @@ func viewAsAdmin(c *gin.Context){
 }
 
 
-func readJSON(path string) []Logfile{
+func parseJSON(path string) []Logfile{
 	var logfile []Logfile
 
 	json, err := os.Open(path)
