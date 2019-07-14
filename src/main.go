@@ -42,7 +42,7 @@ type Logfile struct {
 	Name         string   `json:"name"`
 	Age          int `json:"age"`
 	Email        string `json:"email"`
-	Mobile		 int `json:"mobile"`
+	Mobile		 string `json:"mobile"`
 	Role         string `json:"role"`
 	Num          int  `json:"num"`
 	Address      string `json:"address"`
@@ -81,7 +81,7 @@ func main() {
 		//api.GET("/", apiHome)
 		api.GET("/filePath", upload)
 		api.GET("/user/:key/:id", viewAsUser)
-		api.GET("/admin/:id", viewAsAdmin)
+		api.GET("/admin/:key/:id", viewAsAdmin)
 	}
 
 	router.Run(":3001" )
@@ -93,7 +93,18 @@ func upload(c *gin.Context){
 }
 
 func viewAsUser(c *gin.Context){
+	id := c.Params.ByName("id")
+	key := c.Params.ByName("key")
+	var logfile []Logfile
 
+	db.Where("" + key + " = ?", id).Find(&logfile)
+
+	for i := 0; i < len(logfile); i++ {
+		logfile[i].Email = "xxxxx@xxxx.com"
+		logfile[i].Mobile = "xxxxxxxxxx"
+	}
+
+	c.JSON(200, logfile)
 }
 
 
