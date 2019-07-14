@@ -79,7 +79,7 @@ func main() {
 	api := router.Group("/api")
 	{
 		//api.GET("/", apiHome)
-		api.GET("/filePath", upload)
+		api.GET("/upload/:filePath", upload)
 		api.GET("/user/:key/:id", viewAsUser)
 		api.GET("/admin/:key/:id", viewAsAdmin)
 	}
@@ -89,6 +89,14 @@ func main() {
 }
 
 func upload(c *gin.Context){
+
+	filePath := c.Params.ByName("filePath")
+	var logfile []Logfile
+	logfile = readJSON(filePath)
+
+	for i := 0; i< len(logfile) ; i++ {
+		db.Create(logfile[i])
+	}
 
 }
 
@@ -119,7 +127,7 @@ func viewAsAdmin(c *gin.Context){
 }
 
 
-func readJSON(path string){
+func readJSON(path string) []Logfile{
 	var logfile []Logfile
 
 	json, err := os.Open(path)
@@ -132,5 +140,6 @@ func readJSON(path string){
 	byteValue, _ := ioutil.ReadAll(json)
 	json.Unmarshal(byteValue, &logfile)
 
+	return logfile
 }
 
