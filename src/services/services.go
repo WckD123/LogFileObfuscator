@@ -1,22 +1,61 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"models"
+	"os"
 	"resources"
+	"time"
+	_"time"
 )
 
-// UPLOAD FUNCTION (PARSE JSON FILES AND INSERT IN DB)
+// UPLOAD FUNCTION
 
 func Upload(c *gin.Context){
 
 	var logfiles []models.Logfile
 	c.BindJSON(&logfiles)
 
+}
+
+
+// UPLOAD WITH PATH FUNCTION
+
+func UploadWithPath(path string){
+	var logfiles []models.Logfile
+	jsonFile, err := os.Open(path)
+	if err != nil{
+		panic(err)
+	}
+
+	fmt.Println("JSON file opened")
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal(byteValue, &logfiles)
+
+	t1 := time.Now()
+
+	UploadUsingConcurrency(logfiles)
+
+	t2 := time.Now()
+
+	diff := t2.Sub(t1)
+	fmt.Println(diff)
+
+	defer jsonFile.Close()
+}
+
+// UPLOAD USING CONCURRENCY
+
+func UploadUsingConcurrency(logfiles []models.Logfile){
 	jobs := make(chan int, 100)
 
-	for w := 1; w <= 5; w++ {
+	numberOfWorkers := 30
+
+	for w := 1; w <= numberOfWorkers; w++ {
 		go uploadHelper(w, logfiles, jobs)
 	}
 	for j := 0; j < len(logfiles); j++ {
@@ -29,17 +68,14 @@ func Upload(c *gin.Context){
 
 func uploadHelper(w int,logfiles []models.Logfile, jobs <-chan int){
 	for j := range jobs {
-		fmt.Println("worker ",w," started  insert", j)
 		error := resources.Db.Create(&logfiles[j]).Error
 		if  error != nil {
 			panic(error)
 		}
-		fmt.Println("worker ",w," finished insert", j)
 	}
 }
 
 // FUNCTION TO GET USER RECORDS AS USER (OBFUSCATED RECORDS)
-
 
 func ViewAsUser(c *gin.Context){
 	id := c.Params.ByName("id")
@@ -67,3 +103,4 @@ func ViewAsAdmin(c *gin.Context){
 
 	c.JSON(200, logfile)
 }
+

@@ -16,6 +16,7 @@ func CreateRoutes(){
 		api.GET("/upload", controllers.Upload)
 		api.GET("/user/:key/:id", controllers.ViewAsUser)
 		api.GET("/admin/:key/:id", controllers.ViewAsAdmin)
+		api.GET("/uploadwithpath/:path", controllers.UploadWithPath)
 	}
 
 	router.Run(":3000" )

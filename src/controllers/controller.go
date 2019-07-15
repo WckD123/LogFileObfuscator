@@ -17,3 +17,8 @@ func ViewAsUser(c *gin.Context){
 func ViewAsAdmin(c *gin.Context){
 	services.ViewAsAdmin(c);
 }
+
+func UploadWithPath(c *gin.Context){
+	path := c.Params.ByName("path")
+	services.UploadWithPath(path)
+}
