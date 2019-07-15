@@ -6,7 +6,7 @@ import (
 
 	_ "database/sql"
 	_"encoding/json"
-	"fmt"
+	_"fmt"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -15,7 +15,6 @@ import (
 	_"os"
 	_ "time"
 
-	//"net/http"
 )
 
 var db *gorm.DB
@@ -28,9 +27,6 @@ func init() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-
-	// Close the DB connection after everything is done.
-	//defer db.Close()
 
 	//Migrate the schema
 	db.AutoMigrate(&Logfile{}, &Logfile2{}, &Logfile3{})
@@ -45,27 +41,6 @@ type Logfile struct {
 	Role         string `json:"role"`
 	Num          int  `json:"num"`
 	Address      string `json:"address"`
-}
-
-type Logfile2 struct {
-	gorm.Model
-	Name         string `json:"name"`
-	Age          int `json:"age"`
-	Email        string `json:"email"`
-	Mobile		 int `json:"mobile"`
-	School         string `json:"school"`
-	Num          int `json:"num"`
-	College      string `json:"college"`
-}
-
-type Logfile3 struct {
-	gorm.Model
-	Name         string `json:"name"`
-	Age          int `json:"age"`
-	Email        string `json:"email"`
-	Mobile		 int `json:"mobile"`
-	Company         string  `json:"company"`
-	Num          int `json:"num"`
 }
 
 
@@ -83,31 +58,17 @@ func main() {
 		api.GET("/admin/:key/:id", viewAsAdmin)
 	}
 
-	router.Run(":3011" )
+	router.Run(":3000" )
 
 }
 
 func upload(c *gin.Context){
 
-	fmt.Println("upload")
+	var logfiles []Logfile
+	c.BindJSON(&logfiles)
 
-	var logfile []Logfile
-
-	fmt.Println("before upload")
-
-
-	//logfile = parseJSON(filePath)
-
-	c.BindJSON(&logfile)
-
-
-	for i := 0; i< len(logfile) ; i++ {
-		fmt.Println(logfile[i].Name)
-	}
-
-	for i := 0; i< len(logfile) ; i++ {
-		error := db.Create(&logfile[i]).Error
-		fmt.Printf("asdfadsf %T \n",logfile[i])
+	for i := 0; i< len(logfiles) ; i++ {
+		error := db.Create(&logfiles[i]).Error
 		if  error != nil {
 			panic(error)
 		}
@@ -139,30 +100,5 @@ func viewAsAdmin(c *gin.Context){
 	db.Where("" + key + " = ?", id).Find(&logfile)
 
 	c.JSON(200, logfile)
-}
-
-
-func parseJSON(path string) []Logfile{
-
-	fmt.Println("parseFunc")
-
-	var logfile []Logfile
-
-	//jsonFile, err := os.Open(path)
-	//defer jsonFile.Close()
-	//
-	//if err != nil {
-	//	panic(err.Error())
-	//}
-	//
-	//byteValue, _ := ioutil.ReadAll(jsonFile)
-	//json.Unmarshal(byteValue, &logfile)
-
-
-
-	fmt.Println("parseFunc End")
-
-
-	return logfile
 }
 
