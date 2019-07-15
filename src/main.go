@@ -6,14 +6,13 @@ import (
 
 	_ "database/sql"
 	_"encoding/json"
-	_"fmt"
+	"fmt"
 	"github.com/gin-gonic/contrib/static"
-	_ "github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"io/ioutil"
-	"os"
+	_"io/ioutil"
+	_"os"
 	_ "time"
 
 	//"net/http"
@@ -31,7 +30,7 @@ func init() {
 	}
 
 	// Close the DB connection after everything is done.
-	defer db.Close()
+	//defer db.Close()
 
 	//Migrate the schema
 	db.AutoMigrate(&Logfile{}, &Logfile2{}, &Logfile3{})
@@ -79,23 +78,39 @@ func main() {
 	api := router.Group("/api")
 	{
 		//api.GET("/", apiHome)
-		api.GET("/upload/:filePath", upload)
+		api.GET("/upload", upload)
 		api.GET("/user/:key/:id", viewAsUser)
 		api.GET("/admin/:key/:id", viewAsAdmin)
 	}
 
-	router.Run(":3001" )
+	router.Run(":3011" )
 
 }
 
 func upload(c *gin.Context){
 
-	filePath := c.Params.ByName("filePath")
+	fmt.Println("upload")
+
 	var logfile []Logfile
-	logfile = parseJSON(filePath)
+
+	fmt.Println("before upload")
+
+
+	//logfile = parseJSON(filePath)
+
+	c.BindJSON(&logfile)
+
 
 	for i := 0; i< len(logfile) ; i++ {
-		db.Create(logfile[i])
+		fmt.Println(logfile[i].Name)
+	}
+
+	for i := 0; i< len(logfile) ; i++ {
+		error := db.Create(&logfile[i]).Error
+		fmt.Printf("asdfadsf %T \n",logfile[i])
+		if  error != nil {
+			panic(error)
+		}
 	}
 
 }
@@ -128,17 +143,25 @@ func viewAsAdmin(c *gin.Context){
 
 
 func parseJSON(path string) []Logfile{
+
+	fmt.Println("parseFunc")
+
 	var logfile []Logfile
 
-	json, err := os.Open(path)
-	defer json.Close()
+	//jsonFile, err := os.Open(path)
+	//defer jsonFile.Close()
+	//
+	//if err != nil {
+	//	panic(err.Error())
+	//}
+	//
+	//byteValue, _ := ioutil.ReadAll(jsonFile)
+	//json.Unmarshal(byteValue, &logfile)
 
-	if err != nil {
-		panic(err.Error())
-	}
 
-	byteValue, _ := ioutil.ReadAll(json)
-	json.Unmarshal(byteValue, &logfile)
+
+	fmt.Println("parseFunc End")
+
 
 	return logfile
 }
