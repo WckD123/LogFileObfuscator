@@ -59,7 +59,7 @@ func UploadUsingConcurrency(logfiles []models.Logfile){
 		jobs <- v
 	}
 
-	numberOfWorkers := 30
+	numberOfWorkers := 10
 
 	for w := 1; w <= numberOfWorkers; w++ {
 		go uploadHelper(jobs)
