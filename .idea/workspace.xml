@@ -2,7 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8aaf195e-be20-4ceb-b2e4-7e0acf9d3f63" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/go_files.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToUpload/test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/gin-gonic/contrib/static.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/gin-gonic/gin.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/go-sql-driver/mysql.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/darwin_amd64/github.com/jinzhu/gorm.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Outcome.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/WckD123/LogFileObfuscator" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/gin-contrib/sse" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/gin-gonic/contrib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/gin-gonic/gin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/go-sql-driver/mysql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/golang/protobuf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/jinzhu/gorm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/jinzhu/inflection" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/mattn/go-isatty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.com/ugorji/go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gopkg.in/go-playground/validator.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gopkg.in/yaml.v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/models.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/db.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/routes.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/services.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/index.html" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,7 +43,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Outcome.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -24,7 +56,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
+            <state relative-caret-position="1578405">
               <caret line="105227" column="22" selection-start-line="105227" selection-start-column="22" selection-end-line="105227" selection-end-column="22" />
             </state>
           </provider>
@@ -33,11 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="180">
               <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-              <folding>
-                <element signature="e#14#269#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -66,8 +95,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+            <state relative-caret-position="30">
+              <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -121,7 +150,22 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="go_files" type="b2602c69:ProjectViewProjectNode" />
+              <item name="go_files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="go_files" type="b2602c69:ProjectViewProjectNode" />
+              <item name="go_files" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -179,15 +223,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24248926" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24606581" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32891566" />
@@ -195,10 +235,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -245,9 +290,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models.go" />
     <entry file="file://$USER_HOME$/Downloads/GoProject/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-345">
@@ -312,23 +355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Outcome.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="105227" column="22" selection-start-line="105227" selection-start-column="22" selection-end-line="105227" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/github.com/go-sql-driver/mysql/appengine.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/github.com/go-sql-driver/mysql/auth.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -348,22 +374,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Outcome.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="22" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1578405">
+          <caret line="105227" column="22" selection-start-line="105227" selection-start-column="22" selection-end-line="105227" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/db.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="15" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="15" />
           <folding>
             <element signature="e#19#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding>
-            <element signature="e#14#269#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -375,10 +412,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/github.com/go-sql-driver/mysql/appengine.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        <state relative-caret-position="30">
+          <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
         </state>
       </provider>
     </entry>
