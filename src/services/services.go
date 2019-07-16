@@ -3,24 +3,13 @@ package services
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"models"
 	"os"
 	"resources"
-	"sync"
-	"time"
 	_ "time"
 )
 
-// UPLOAD FUNCTION
-
-func Upload(c *gin.Context){
-
-	var logfiles []models.Logfile
-	c.BindJSON(&logfiles)
-
-}
 
 
 // UPLOAD WITH PATH FUNCTION
@@ -37,14 +26,8 @@ func UploadWithPath(path string){
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &logfiles)
 
-	t1 := time.Now()
-
 	UploadUsingConcurrency(logfiles)
 
-	t2 := time.Now()
-
-	diff := t2.Sub(t1)
-	fmt.Println(diff)
 
 	defer jsonFile.Close()
 }
@@ -53,7 +36,7 @@ func UploadWithPath(path string){
 
 // OLD FUNCTION WITHOUT WAIT GROUPS
 
-var wgg sync.WaitGroup
+//var wgg sync.WaitGroup
 
 func UploadUsingConcurrency(logfiles []models.Logfile){
 	jobs := make(chan models.Logfile, len(logfiles))
@@ -65,31 +48,13 @@ func UploadUsingConcurrency(logfiles []models.Logfile){
 	numberOfWorkers := 10
 
 	for w := 1; w <= numberOfWorkers; w++ {
-		wgg.Add(1)
+		//wgg.Add(1)
 		go uploadHelper(jobs)
 	}
-	wgg.Wait()
+	//wgg.Wait()
 	close(jobs)
 }
 
-// UPLAOD FUNCTION WITH WAIT GROUP (SLOW)
-
-//var wg sync.WaitGroup
-//
-//func UploadUsingConcurrency(logfiles []models.Logfile){
-//	//jobs := make(chan int, len(logfiles))
-//	wg.Add(len(logfiles))
-//	for _, logfile := range logfiles {
-//		go func(logfile1 models.Logfile){
-//			error := resources.Db.Create(&logfile).Error
-//			if  error != nil {
-//				panic(error)
-//			}
-//			wg.Done()
-//		}(logfile)
-//	}
-//	wg.Wait()
-//}
 
 // UPLOADHELPER FUNCTION (USES GO ROUTINES TO INSERT INTO DB)
 
@@ -108,17 +73,15 @@ func uploadHelper(jobs <-chan models.Logfile){
 			}
 		}
 	}
-	wgg.Done()
+	//wgg.Done()
 }
 
 
 // FUNCTION TO GET USER RECORDS AS USER (OBFUSCATED RECORDS)
 
-func ViewAsUser(c *gin.Context){
-	id := c.Params.ByName("id")
-	key := c.Params.ByName("key")
-	var logfile []models.Logfile
+func ViewAsUser(id string, key string) []models.Logfile{
 
+	var logfile []models.Logfile
 	resources.Db.Where("" + key + " = ?", id).Find(&logfile)
 
 	for i := 0; i < len(logfile); i++ {
@@ -126,18 +89,15 @@ func ViewAsUser(c *gin.Context){
 		logfile[i].Mobile = "xxxxxxxxxx"
 	}
 
-	c.JSON(200, logfile)
+	return logfile
 }
 
 // FUNCTION TO GET USER RECORDS AS ADMIN
 
-func ViewAsAdmin(c *gin.Context){
-	id := c.Params.ByName("id")
-	key := c.Params.ByName("key")
+func ViewAsAdmin(id string, key string) []models.Logfile{
+
 	var logfile []models.Logfile
-
 	resources.Db.Where("" + key + " = ?", id).Find(&logfile)
-
-	c.JSON(200, logfile)
+	return logfile
 }
 
