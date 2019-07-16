@@ -8,6 +8,7 @@ import (
 	"models"
 	"os"
 	"resources"
+	"sync"
 	"time"
 	_ "time"
 )
@@ -52,6 +53,8 @@ func UploadWithPath(path string){
 
 // OLD FUNCTION WITHOUT WAIT GROUPS
 
+var wgg sync.WaitGroup
+
 func UploadUsingConcurrency(logfiles []models.Logfile){
 	jobs := make(chan models.Logfile, len(logfiles))
 
@@ -62,8 +65,10 @@ func UploadUsingConcurrency(logfiles []models.Logfile){
 	numberOfWorkers := 10
 
 	for w := 1; w <= numberOfWorkers; w++ {
+		wgg.Add(1)
 		go uploadHelper(jobs)
 	}
+	wgg.Wait()
 	close(jobs)
 }
 
@@ -95,6 +100,7 @@ func uploadHelper(jobs <-chan models.Logfile){
 			if(!ok) {
 				return
 			} else {
+				//fmt.Printf("insert")
 				error := resources.Db.Create(&v).Error
 					if  error != nil {
 						panic(error)
@@ -102,6 +108,7 @@ func uploadHelper(jobs <-chan models.Logfile){
 			}
 		}
 	}
+	wgg.Done()
 }
 
 
