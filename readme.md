@@ -70,10 +70,10 @@ Rather than passing indexes related to the slice, I have now created a channel o
 
 Same as Test 3
 
-2.61 milli seconds. 
+2.61 milli seconds. (This is a 1000x increase!!!!)
 
 ### Test 6:
 
-Same as Test 4 (This is a 1000x increase!!!!)
+Same as Test 4 
  
 1.21 milli seconds (This is a 1000x increase!!!!)
