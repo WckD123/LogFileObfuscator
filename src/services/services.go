@@ -95,8 +95,6 @@ func uploadHelper(jobs <-chan models.Logfile){
 			if(!ok) {
 				return
 			} else {
-				fmt.Printf("%T",v)
-				fmt.Println(v)
 				error := resources.Db.Create(&v).Error
 					if  error != nil {
 						panic(error)
