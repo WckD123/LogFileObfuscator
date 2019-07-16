@@ -9,7 +9,7 @@ import (
 	"os"
 	"resources"
 	"time"
-	_"time"
+	_ "time"
 )
 
 // UPLOAD FUNCTION
@@ -50,30 +50,62 @@ func UploadWithPath(path string){
 
 // UPLOAD USING CONCURRENCY
 
+// OLD FUNCTION WITHOUT WAIT GROUPS
+
 func UploadUsingConcurrency(logfiles []models.Logfile){
-	jobs := make(chan int, 100)
+	jobs := make(chan models.Logfile, len(logfiles))
+
+	for _ ,v := range logfiles{
+		jobs <- v
+	}
 
 	numberOfWorkers := 30
 
 	for w := 1; w <= numberOfWorkers; w++ {
-		go uploadHelper(w, logfiles, jobs)
-	}
-	for j := 0; j < len(logfiles); j++ {
-		jobs <- j
+		go uploadHelper(jobs)
 	}
 	close(jobs)
 }
 
+// UPLAOD FUNCTION WITH WAIT GROUP (SLOW)
+
+//var wg sync.WaitGroup
+//
+//func UploadUsingConcurrency(logfiles []models.Logfile){
+//	//jobs := make(chan int, len(logfiles))
+//	wg.Add(len(logfiles))
+//	for _, logfile := range logfiles {
+//		go func(logfile1 models.Logfile){
+//			error := resources.Db.Create(&logfile).Error
+//			if  error != nil {
+//				panic(error)
+//			}
+//			wg.Done()
+//		}(logfile)
+//	}
+//	wg.Wait()
+//}
+
 // UPLOADHELPER FUNCTION (USES GO ROUTINES TO INSERT INTO DB)
 
-func uploadHelper(w int,logfiles []models.Logfile, jobs <-chan int){
-	for j := range jobs {
-		error := resources.Db.Create(&logfiles[j]).Error
-		if  error != nil {
-			panic(error)
+func uploadHelper(jobs <-chan models.Logfile){
+	for {
+		select {
+			case v,ok := <-jobs:
+			if(!ok) {
+				return
+			} else {
+				fmt.Printf("%T",v)
+				fmt.Println(v)
+				error := resources.Db.Create(&v).Error
+					if  error != nil {
+						panic(error)
+					}
+			}
 		}
 	}
 }
+
 
 // FUNCTION TO GET USER RECORDS AS USER (OBFUSCATED RECORDS)
 
